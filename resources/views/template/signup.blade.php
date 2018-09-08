@@ -1,12 +1,16 @@
+@php
+$now = date('YmdHis'));
+@endphp
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Sign Up | {{ $app_title }}</title>
+    <title>{{ $app_title }}</title>
     <!-- Favicon-->
-    <link rel="icon" href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/favicon.ico?time={{ $now }}" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -32,7 +36,8 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_up" method="POST">
+                <form id="sign_up" method="POST" action="{{ action('SignController@in') }}">
+                    @csrf
                     <div class="msg">Register a new membership</div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -70,7 +75,7 @@
                     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
 
                     <div class="m-t-25 m-b--5 align-center">
-                        <a href="{{ action('SignController@signin') }}">You already have a membership?</a>
+                        <a href="{{ action('SignController@signIn') }}">You already have a membership?</a>
                     </div>
                 </form>
             </div>

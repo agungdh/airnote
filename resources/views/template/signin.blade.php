@@ -1,12 +1,22 @@
+@php
+$now = date('YmdHis');
+
+$data = session('data');
+
+if ($data != null) {
+    dd($data);
+}
+@endphp
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Sign In | {{ $app_title }}</title>
+    <title>{{ $app_title }}</title>
     <!-- Favicon-->
-    <link rel="icon" href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/favicon.ico?time={{ $now }}" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -32,7 +42,8 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST">
+                <form id="sign_in" method="POST" action="{{ action('SignController@in') }}">
+                    @csrf
                     <div class="msg">Sign in to start your session</div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -50,13 +61,11 @@
                             <input type="password" class="form-control" name="password" placeholder="Password" required>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-8 p-t-5">
-                            <a href="{{ action('SignController@signup') }}">Register Now!</a>
-                        </div>
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
-                        </div>
+                    
+                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN IN</button>
+
+                    <div class="m-t-25 m-b--5 align-center">
+                        <a href="{{ action('SignController@signUp') }}">Register Now!</a>
                     </div>
                 </form>
             </div>
