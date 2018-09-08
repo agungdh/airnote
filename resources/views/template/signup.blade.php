@@ -1,5 +1,5 @@
 @php
-$now = date('YmdHis'));
+$now = date('YmdHis');
 @endphp
 
 <!DOCTYPE html>
@@ -25,6 +25,9 @@ $now = date('YmdHis'));
     <!-- Animation Css -->
     <link href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/plugins/animate-css/animate.css" rel="stylesheet" />
 
+    <!-- Sweetalert Css -->
+    <link href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/css/style.css" rel="stylesheet">
 </head>
@@ -36,7 +39,7 @@ $now = date('YmdHis'));
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_up" method="POST" action="{{ action('SignController@in') }}">
+                <form id="sign_up" method="POST" action="{{ action('SignController@up') }}">
                     @csrf
                     <div class="msg">Register a new membership</div>
                     <div class="input-group">
@@ -93,6 +96,9 @@ $now = date('YmdHis'));
 
     <!-- Validation Plugin Js -->
     <script src="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- SweetAlert Plugin Js -->
+    <script src="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/plugins/sweetalert/sweetalert.min.js"></script>
 
     <!-- Custom Js -->
     <script src="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/js/admin.js"></script>

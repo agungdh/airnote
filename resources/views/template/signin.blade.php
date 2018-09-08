@@ -1,11 +1,7 @@
 @php
 $now = date('YmdHis');
 
-$data = session('data');
-
-if ($data != null) {
-    dd($data);
-}
+$flashData = session()->get('flashData');
 @endphp
 
 <!DOCTYPE html>
@@ -31,6 +27,9 @@ if ($data != null) {
     <!-- Animation Css -->
     <link href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/plugins/animate-css/animate.css" rel="stylesheet" />
 
+    <!-- Sweetalert Css -->
+    <link href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/css/style.css" rel="stylesheet">
 </head>
@@ -50,7 +49,7 @@ if ($data != null) {
                             <i class="material-icons">email</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="email" placeholder="Email" required autofocus>
+                            <input type="text" class="form-control" name="email" placeholder="Email" required autofocus value="{{ $flashData != null ? $flashData->email : null }}">
                         </div>
                     </div>
                     <div class="input-group">
@@ -84,8 +83,20 @@ if ($data != null) {
     <!-- Validation Plugin Js -->
     <script src="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/plugins/jquery-validation/jquery.validate.js"></script>
 
+    <!-- SweetAlert Plugin Js -->
+    <script src="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/plugins/sweetalert/sweetalert.min.js"></script>
+
     <!-- Custom Js -->
     <script src="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/js/admin.js"></script>
+    <script type="text/javascript">
+        @php
+            if ($flashData != null) {
+                @endphp
+                swal('{{ $flashData->header }}', '{{ $flashData->message }}', '{{ $flashData->status }}');
+                @php
+            }
+        @endphp
+    </script>
 </body>
 
 </html>

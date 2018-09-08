@@ -16,40 +16,45 @@ class SignController extends Controller
     	$email = $request->input('email');
 		$password = $request->input('password');
 
-		$select_user = DB::table('user')->where(['email' => $email])->first();
+		$selectedUser = DB::table('user')->where(['email' => $email])->first();
 		
-		if ($select_user != null && Hash::check($password, $select_user->password)) {
-			$array_data_user = array(
-				'id'  => $select_user->id,
-				'name'  => $select_user->name,
-				'email'  => $select_user->email,
-				'level'  => $select_user->level,
-				'validated_at'  => $select_user->validated_at,
-				'login'  => true
-			);
+		if ($selectedUser != null && Hash::check($password, $selectedUser->password)) {
+			$userData = new \stdClass();
+			$userData->id = $selectedUser->id;
+			$userData->name = $selectedUser->name;
+			$userData->email = $selectedUser->email;
+			$userData->level = $selectedUser->level;
+			$userData->validated_at = $selectedUser->validated_at;
+			$userData->login = true;
 
-			if ($array_data_user['validated_at'] != null) {
-				session($array_data_user);
+			if ($userData->validated_at != null) {
+				session($userData);
 			} else {
-				$data['header'] = "Login Failed !!!";
-				$data['pesan'] = "User not validated. Check your email.";
-				$data['status'] = "error";
-				
-				$data['login'] = false;
+				$flashData = new \stdClass();
 
-				session()->flash('data', $data);				
+				$flashData->header = "Login Failed !!!";
+				$flashData->message = "User not validated. Check your email.";
+				$flashData->status = "error";
+				
+				$flashData->email = $email;
+				$flashData->login = false;
+
+				session()->flash('flashData', $flashData);				
 			}
 		} else {
-			$data['header'] = "Login Failed !!!";
-			$data['pesan'] = "Wrong username or password.";
-			$data['status'] = "error";
-			
-			$data['login'] = false;
+			$flashData = new \stdClass();
 
-			session()->flash('data', $data);
+			$flashData->header = "Login Failed !!!";
+			$flashData->message = "Wrong username or password.";
+			$flashData->status = "error";
+			
+			$flashData->email = $email;
+			$flashData->login = false;
+
+			session()->flash('flashData', $flashData);
 		}
 
-		return redirect('/');
+		return redirect()->action('SignController@signIn');
     }
 
     function signUp() {
@@ -63,7 +68,7 @@ class SignController extends Controller
     function signOut() {
     	session()->flush();
 
-		return redirect('/');
+		return redirect()->action('SignController@signIn');
     }
 
 }
