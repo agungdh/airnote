@@ -28,6 +28,9 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/css/themes/all-themes.css" rel="stylesheet" />
+
+    <!-- View Css -->
+    @yield('css')
 </head>
 
 <body class="theme-red">
@@ -86,7 +89,8 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="active">
+                    <li class="active"></li>
+                    <li>
                         <a href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/index.html">
                             <i class="material-icons">home</i>
                             <span>Home</span>
@@ -104,7 +108,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 1997 - 2018 <a href="https://github.com/agungdh/">AgungDH</a>.
+                    &copy; 2018 <a href="https://github.com/agungdh/airnote">AIRnote</a>.
                 </div>
                 <div class="version">
                     <b>Version: </b> 1.0
@@ -140,6 +144,9 @@
 
     <!-- Custom Js -->
     <script src="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/js/admin.js"></script>
+
+    <!-- View Js -->
+    @yield('js')
 </body>
 
 </html>
