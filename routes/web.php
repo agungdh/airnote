@@ -11,14 +11,7 @@
 |
 */
 
-Route::get('/', function() {
-	if (session('login') == true) {
-		return 'Hello, World!';
-		// return redirect()->action('HomeController@index');
-	} else {
-		return redirect()->action('SignController@signIn');
-	}
-});
+Route::get('/', 'HomeController@index');
 
 Route::get('/signin', 'SignController@signIn');
 Route::post('/in', 'SignController@in');
