@@ -59,7 +59,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/index.html">ADMINBSB - MATERIAL DESIGN</a>
+                <a class="navbar-brand" href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/index.html">{{ $app_title }}</a>
             </div>
         </div>
     </nav>
@@ -90,18 +90,7 @@
             <div class="menu">
                 <ul class="list">
                     <li class="active"></li>
-                    <li>
-                        <a href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/index.html">
-                            <i class="material-icons">home</i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ asset('AdminBSBMaterialDesign-1.0.5') }}/index.html">
-                            <i class="material-icons">home</i>
-                            <span>Home</span>
-                        </a>
-                    </li>
+                    @include('template.menu')
                 </ul>
             </div>
             <!-- #Menu -->
@@ -121,9 +110,11 @@
 
     <section class="content">
         <div class="container-fluid">
-            <div class="block-header">
-                <h2>BLANK PAGE</h2>
-            </div>
+            <ol class="breadcrumb align-right">
+                @yield('nav')
+            </ol>             
+            <br>
+            @yield('content')
         </div>
     </section>
 
