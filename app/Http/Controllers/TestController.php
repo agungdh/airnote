@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
+    function blank() {
+        return view('test.blank');
+    }
+
     /**
      * Display a listing of the resource.
      *

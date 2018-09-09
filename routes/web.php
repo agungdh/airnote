@@ -19,4 +19,5 @@ Route::get('/signup', 'SignController@signUp');
 Route::post('/up', 'SignController@up');
 Route::get('/signout', 'SignController@signOut');
 
+Route::get('/test/blank', 'TestController@blank');
 Route::resource('/test', 'TestController');

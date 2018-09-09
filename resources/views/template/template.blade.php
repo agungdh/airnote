@@ -99,9 +99,6 @@
                 <div class="copyright">
                     &copy; 2018 <a href="https://github.com/agungdh/airnote">AIRnote</a>.
                 </div>
-                <div class="version">
-                    <b>Version: </b> 1.0
-                </div>
             </div>
             <!-- #Footer -->
         </aside>
